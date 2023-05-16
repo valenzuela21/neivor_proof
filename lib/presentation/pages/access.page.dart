@@ -106,23 +106,26 @@ class AccessPage extends StatelessWidget {
           ],
         ),
       ),
-      MaterialButton(
-          minWidth: double.infinity,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0)),
-          disabledColor: Theme.of(context).colorScheme.tertiary,
-          focusColor: Theme.of(context).colorScheme.tertiary,
-          splashColor: Theme.of(context).colorScheme.tertiary,
-          highlightColor: Theme.of(context).colorScheme.tertiary,
-          elevation: 0,
-          color: Theme.of(context).colorScheme.primary,
-          onPressed: () => Navigator.of(context).pushNamed("/preview"),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Text("Whatsapp".toUpperCase(),
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w700)),
-          )),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: MaterialButton(
+            minWidth: double.infinity,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0)),
+            disabledColor: Theme.of(context).colorScheme.tertiary,
+            focusColor: Theme.of(context).colorScheme.tertiary,
+            splashColor: Theme.of(context).colorScheme.tertiary,
+            highlightColor: Theme.of(context).colorScheme.tertiary,
+            elevation: 0,
+            color: Theme.of(context).colorScheme.primary,
+            onPressed: () => Navigator.of(context).pushNamed("/preview"),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Text("Whatsapp".toUpperCase(),
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w700)),
+            )),
+      ),
          const  SizedBox(height: 20)
     ]));
   }
