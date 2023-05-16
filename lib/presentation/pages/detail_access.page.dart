@@ -105,7 +105,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
                     enableSuggestions: false,
                     cursorColor: Colors.grey,
                     autocorrect: false,
-                    style: const TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
                     keyboardType: TextInputType.multiline,
                     maxLines: 4,
                     decoration: InputDecorations.generalInputDecoration(
