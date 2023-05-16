@@ -18,6 +18,15 @@ class ListAccessPage extends StatefulWidget {
 }
 
 class _ListAccessPageState extends State<ListAccessPage> {
+
+  late Future<List<Contact>> getContactFuture;
+
+  @override
+  void initState() {
+    getContactFuture = getContacts();
+    super.initState();
+  }
+
   Future<List<Contact>> getContacts() async {
     bool isGranted = await Permission.contacts.status.isGranted;
     if (!isGranted) {
@@ -29,6 +38,11 @@ class _ListAccessPageState extends State<ListAccessPage> {
     return [];
   }
 
+  Future<void> getFilter(String term) async {
+    final filter = await FastContacts.getAllContacts();
+    getContactFuture = Future.value(filter.where((element) => element.displayName.toLowerCase().contains(term.toLowerCase())) .toList());
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -37,7 +51,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
         child: Padding(
             padding: const EdgeInsets.all(10),
             child: FutureBuilder(
-                future: getContacts(),
+                future: getContactFuture,
                 builder: (context, AsyncSnapshot snapshot) {
                   if (!snapshot.hasData) {
                     return SizedBox(
@@ -57,6 +71,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                                   Theme.of(context).textTheme.headlineMedium)),
                       const SizedBox(height: 20),
                       TextFormField(
+                        onChanged: (value)=>getFilter(value),
                         enableSuggestions: false,
                         maxLength: 52,
                         cursorColor: Colors.grey,
@@ -83,7 +98,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                               textStyle:
                                   Theme.of(context).textTheme.displaySmall)),
                       const SizedBox(height: 20),
-                      _ListaAccessContact(
+                      _ListAccessContact(
                         size: size,
                         snapshot: snapshot,
                       ),
@@ -117,10 +132,10 @@ class _ListAccessPageState extends State<ListAccessPage> {
   }
 }
 
-class _ListaAccessContact extends StatelessWidget {
+class _ListAccessContact extends StatelessWidget {
   final AsyncSnapshot snapshot;
 
-  const _ListaAccessContact(
+  const _ListAccessContact(
       {super.key, required this.size, required this.snapshot});
 
   final Size size;
@@ -133,9 +148,9 @@ class _ListaAccessContact extends StatelessWidget {
             child: ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
+                  String phone = "";
                   Contact contact = snapshot.data[index];
                   final _imageFuture = FastContacts.getContactImage(contact.id);
-                  String phone = "";
                   for (var element in contact.phones) {
                     phone += '${element.number}  ';
                   }
@@ -157,7 +172,7 @@ class _ListaAccessContact extends StatelessWidget {
                 }),
           )
         : const SizedBox(
-            child: Text('Nohay números telefónicos'),
+            child: Center( child: Text('No hay números telefónicos')),
           );
   }
 }
