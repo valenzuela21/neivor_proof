@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -8,6 +9,36 @@ final Uri _url = Uri.parse('https://www.neivor.com');
 class AccessPage extends StatelessWidget {
   const AccessPage({Key? key}) : super(key: key);
 
+
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
+
+
+  Future<void> _openWhatsapp({required BuildContext context}) async {
+    String whatsapp = '+573213487458';
+    String whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=hello";
+    String whatsappURLIos =
+        "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
+    if (Platform.isIOS) {
+      if (await canLaunchUrl(Uri.parse(whatsappURLIos))) {
+        await launchUrl(Uri.parse(whatsappURLIos));
+      } else {
+
+      }
+    } else {
+      if (await canLaunchUrl(Uri.parse(whatsappURlAndroid))) {
+        await launchUrl(Uri.parse(whatsappURlAndroid));
+      } else {
+
+      }
+    }
+  }
+  
+  
   @override
   Widget build(BuildContext context) {
 
@@ -51,13 +82,13 @@ class AccessPage extends StatelessWidget {
                             'assets/images/neivor.png',
                             width: 100,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           const Text("Alicia Gonzales",
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontWeight: FontWeight.w700,
                                   fontSize: 24)),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,6 +126,12 @@ class AccessPage extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           Text(
+                            "Expira: 21/04/2023 - 18:30",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
                             "¿Quieres saber mas sobre neivor?",
                             style: Theme.of(context).textTheme.bodyLarge,
                             textAlign: TextAlign.center,
@@ -125,7 +162,7 @@ class AccessPage extends StatelessWidget {
             highlightColor: Theme.of(context).colorScheme.tertiary,
             elevation: 0,
             color: Theme.of(context).colorScheme.primary,
-            onPressed: () => Navigator.of(context).pushNamed("/preview"),
+            onPressed: () => _openWhatsapp(context: context),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: Text("Whatsapp".toUpperCase(),
@@ -137,9 +174,5 @@ class AccessPage extends StatelessWidget {
     ]));
   }
 
-  Future<void> _launchUrl() async {
-    if (!await launchUrl(_url)) {
-      throw Exception('Could not launch $_url');
-    }
-  }
+ 
 }

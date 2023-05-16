@@ -18,13 +18,19 @@ class ListAccessPage extends StatefulWidget {
 }
 
 class _ListAccessPageState extends State<ListAccessPage> {
-
   late Future<List<Contact>> getContactFuture;
+  Timer? _debounce;
 
   @override
   void initState() {
     getContactFuture = getContacts();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    super.dispose();
   }
 
   Future<List<Contact>> getContacts() async {
@@ -39,8 +45,14 @@ class _ListAccessPageState extends State<ListAccessPage> {
   }
 
   Future<void> getFilter(String term) async {
-    final filter = await FastContacts.getAllContacts();
-    getContactFuture = Future.value(filter.where((element) => element.displayName.toLowerCase().contains(term.toLowerCase())) .toList());
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () async {
+      final filter = await FastContacts.getAllContacts();
+      getContactFuture = Future.value(filter
+          .where((element) =>
+              element.displayName.toLowerCase().contains(term.toLowerCase()))
+          .toList());
+    });
   }
 
   @override
@@ -71,7 +83,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                                   Theme.of(context).textTheme.headlineMedium)),
                       const SizedBox(height: 20),
                       TextFormField(
-                        onChanged: (value)=>getFilter(value),
+                        onChanged: (value) => getFilter(value),
                         enableSuggestions: false,
                         maxLength: 52,
                         cursorColor: Colors.grey,
@@ -134,11 +146,11 @@ class _ListAccessPageState extends State<ListAccessPage> {
 
 class _ListAccessContact extends StatelessWidget {
   final AsyncSnapshot snapshot;
+  final Size size;
 
   const _ListAccessContact(
       {super.key, required this.size, required this.snapshot});
 
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +168,8 @@ class _ListAccessContact extends StatelessWidget {
                   }
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail', arguments: snapshot.data[index]);
+                      Navigator.pushNamed(context, '/detail',
+                          arguments: snapshot.data[index]);
                     },
                     child: ListTile(
                       leading: _ImageContact(imageFuture: _imageFuture),
@@ -171,9 +184,10 @@ class _ListAccessContact extends StatelessWidget {
                   );
                 }),
           )
-        : const SizedBox(
-            child: Center( child: Text('No hay números telefónicos')),
-          );
+        : SizedBox(
+                height: size.height / 2.5,
+                child:Center(child: Text('No hay números telefónicos')));
+
   }
 }
 
