@@ -115,7 +115,15 @@ class PreviewPage extends StatelessWidget {
                         child:  Row(
                           children: [
                             Expanded(child: Text('Detalles', style: GoogleFonts.lato(textStyle: Theme.of(context).textTheme.titleMedium))),
-                            Icon(Icons.edit, color: Colors.grey, size: 18,)
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                icon: Icon(Icons.edit),
+                                color: Colors.grey,
+                              )
+
+                        ,
                           ],
                         ),
                       ),
