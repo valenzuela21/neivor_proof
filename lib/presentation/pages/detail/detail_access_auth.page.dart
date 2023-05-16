@@ -1,3 +1,4 @@
+import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
@@ -14,10 +15,14 @@ class DetailAccessPage extends StatefulWidget {
 }
 
 class _DetailAccessPageState extends State<DetailAccessPage> {
+  final TextEditingController _dataInputName = TextEditingController();
   final TextEditingController _dataInputDate = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
+    final contact = ModalRoute.of(context)?.settings.arguments as Contact;
+    _dataInputName.text = contact.displayName;
     return GeneralLayout(
         child: SingleChildScrollView(
       child: SizedBox(
@@ -38,6 +43,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
+                    controller: _dataInputName,
                     enableSuggestions: false,
                     maxLength: 22,
                     cursorColor: Colors.grey,

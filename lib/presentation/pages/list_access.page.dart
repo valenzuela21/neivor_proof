@@ -141,7 +141,7 @@ class _ListaAccessContact extends StatelessWidget {
                   }
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/detail');
+                      Navigator.pushNamed(context, '/detail', arguments: snapshot.data[index]);
                     },
                     child: ListTile(
                       leading: _ImageContact(imageFuture: _imageFuture),
