@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 
-import '../components/form/calendar.component.dart';
-import '../components/form/switch.component.dart';
-import '../ui/form/input.decoration.ui.dart';
+import '../../components/form/calendar.component.dart';
+import '../../components/form/switch.component.dart';
+import '../../ui/form/input.decoration.ui.dart';
 
 class DetailAccessPage extends StatefulWidget {
   const DetailAccessPage({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text('Detalle de la vista',
+              Text('Detalle de la visita',
                   style: GoogleFonts.aBeeZee(
                       textStyle: Theme.of(context).textTheme.headlineMedium)),
               const SizedBox(height: 20),

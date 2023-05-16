@@ -10,6 +10,7 @@ class InputDecorations {
         IconData? suffixIcon}) {
 
     return InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         border: OutlineInputBorder(
              borderRadius: borderRadius,
             borderSide: BorderSide(color: colorInput, width: 1.0)),

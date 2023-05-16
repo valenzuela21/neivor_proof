@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ModalSharedNotification {
-  static modalSharedButton(context){
+  static modalSharedButton(context) {
     return showModalBottomSheet<void>(
         context: context,
         isScrollControlled: false,
@@ -29,9 +29,8 @@ class ModalSharedNotification {
                   height: 30,
                 ),
                 Text('Sincroniza tus datos',
-                    style:  GoogleFonts.aBeeZee(textStyle:  Theme.of(context)
-                        .textTheme
-                        .titleMedium)),
+                    style: GoogleFonts.aBeeZee(
+                        textStyle: Theme.of(context).textTheme.titleMedium)),
                 const SizedBox(
                   height: 10,
                 ),
@@ -44,24 +43,15 @@ class ModalSharedNotification {
                 MaterialButton(
                     minWidth: double.infinity,
                     shape: RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(22.0)),
-                    disabledColor: Theme.of(context)
-                        .colorScheme
-                        .tertiary,
-                    focusColor: Theme.of(context)
-                        .colorScheme
-                        .tertiary,
-                    splashColor: Theme.of(context)
-                        .colorScheme
-                        .tertiary,
-                    highlightColor: Theme.of(context)
-                        .colorScheme
-                        .tertiary,
+                        borderRadius: BorderRadius.circular(22.0)),
+                    disabledColor: Theme.of(context).colorScheme.tertiary,
+                    focusColor: Theme.of(context).colorScheme.tertiary,
+                    splashColor: Theme.of(context).colorScheme.tertiary,
+                    highlightColor: Theme.of(context).colorScheme.tertiary,
                     elevation: 0,
-                    color:
-                    Theme.of(context).colorScheme.primary,
-                    onPressed: () => Navigator.of(context).pushNamed("/list_access"),
+                    color: Theme.of(context).colorScheme.primary,
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed("/list_access"),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 15),
@@ -80,27 +70,23 @@ class ModalSharedNotification {
                     child: OutlinedButton(
                         style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          side: const BorderSide(
-                              width: 1, color: Colors.grey),
+                          side: const BorderSide(width: 1, color: Colors.grey),
                         ),
                         onPressed: () {
-
-                          },
+                          Navigator.pushNamed(context, '/not_list_access');
+                        },
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 15),
                           child: Text("Omitir".toUpperCase(),
                               style: const TextStyle(
                                   color: Colors.black45,
-                                  fontWeight:
-                                  FontWeight.w700)),
+                                  fontWeight: FontWeight.w700)),
                         )),
                   ),
                 ),
-
               ],
             ),
           );
