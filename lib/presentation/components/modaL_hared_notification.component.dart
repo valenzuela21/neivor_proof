@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,10 +21,12 @@ class ModalSharedNotification {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.autorenew,
-                  color: Colors.grey,
-                  size: 65,
+                Roulette(
+                  child: const Icon(
+                    Icons.autorenew,
+                    color: Colors.grey,
+                    size: 65,
+                  ),
                 ),
                 const SizedBox(
                   height: 30,

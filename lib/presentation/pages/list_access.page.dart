@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data' as td;
 
+import 'package:animate_do/animate_do.dart';
 import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,32 +111,37 @@ class _ListAccessPageState extends State<ListAccessPage> {
                               textStyle:
                                   Theme.of(context).textTheme.displaySmall)),
                       const SizedBox(height: 20),
-                      _ListAccessContact(
-                        size: size,
-                        snapshot: snapshot,
+                      FadeInUp(
+                        child: _ListAccessContact(
+                          size: size,
+                          snapshot: snapshot,
+                        ),
                       ),
                       const SizedBox(height: 10),
-                      MaterialButton(
-                          minWidth: double.infinity,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(22.0)),
-                          disabledColor: Theme.of(context).colorScheme.tertiary,
-                          focusColor: Theme.of(context).colorScheme.tertiary,
-                          splashColor: Theme.of(context).colorScheme.tertiary,
-                          highlightColor:
-                              Theme.of(context).colorScheme.tertiary,
-                          elevation: 0,
-                          color: Theme.of(context).colorScheme.primary,
-                          onPressed: () =>
-                              Navigator.of(context).pushNamed("/list_access"),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
-                            child: Text("Registrar Visitante".toUpperCase(),
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700)),
-                          )),
+                      FadeInUp(
+                        delay: Duration(milliseconds: 500),
+                        child: MaterialButton(
+                            minWidth: double.infinity,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(22.0)),
+                            disabledColor: Theme.of(context).colorScheme.tertiary,
+                            focusColor: Theme.of(context).colorScheme.tertiary,
+                            splashColor: Theme.of(context).colorScheme.tertiary,
+                            highlightColor:
+                                Theme.of(context).colorScheme.tertiary,
+                            elevation: 0,
+                            color: Theme.of(context).colorScheme.primary,
+                            onPressed: () =>
+                                Navigator.of(context).pushNamed("/list_access"),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 15),
+                              child: Text("Registrar Visitante".toUpperCase(),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700)),
+                            )),
+                      ),
                     ],
                   );
                 })),

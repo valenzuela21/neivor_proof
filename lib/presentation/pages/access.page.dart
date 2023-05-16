@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
+
+import 'package:flutter/material.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final Uri _url = Uri.parse('https://www.neivor.com');
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 
-import '../../models/services.modesl.dart';
+import '../../data/models/services.modesl.dart';
 import '../components/modaL_hared_notification.component.dart';
 
 
