@@ -39,6 +39,13 @@ class _ListAccessPageState extends State<ListAccessPage> {
             child: FutureBuilder(
                 future: getContacts(),
                 builder: (context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) {
+                    return SizedBox(
+                      width: 35,
+                      height: 35,
+                      child: Image.asset('assets/images/neivor.png'),
+                    );
+                  }
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -120,58 +127,61 @@ class _ListaAccessContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return SizedBox(
-      height: size.height / 2.5,
-      child: ListView.builder(
-          itemCount: snapshot.data.length,
-          itemBuilder: (context, index) {
-            Contact contact = snapshot.data[index];
-            final _imageFuture = FastContacts.getContactImage(contact.id);
-            String phone = "";
-            for (var element in contact.phones) {
-              phone += '${element.number}  ';
-            }
-            return GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/detail');
-              },
-              child: ListTile(
-                leading: ImageContact(imageFuture: _imageFuture),
-                title: Text(contact.displayName,
-                    style: Theme.of(context).textTheme.titleSmall),
-                subtitle: Text(phone),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 14,
-                ),
-              ),
-            );
-          }),
-    );
+    return snapshot.data.length > 0
+        ? SizedBox(
+            height: size.height / 2.5,
+            child: ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  Contact contact = snapshot.data[index];
+                  final _imageFuture = FastContacts.getContactImage(contact.id);
+                  String phone = "";
+                  for (var element in contact.phones) {
+                    phone += '${element.number}  ';
+                  }
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/detail');
+                    },
+                    child: ListTile(
+                      leading: _ImageContact(imageFuture: _imageFuture),
+                      title: Text(contact.displayName,
+                          style: Theme.of(context).textTheme.titleSmall),
+                      subtitle: Text(phone),
+                      trailing: const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 14,
+                      ),
+                    ),
+                  );
+                }),
+          )
+        : const SizedBox(
+            child: Text('Nohay números telefónicos'),
+          );
   }
 }
 
-
-class ImageContact extends StatelessWidget {
+class _ImageContact extends StatelessWidget {
   final imageFuture;
-  const ImageContact({Key? key, required this.imageFuture}) : super(key: key);
+
+  const _ImageContact({Key? key, required this.imageFuture}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<td.Uint8List?>(
       future: imageFuture,
       builder: (context, snapshot) {
-        print(snapshot.hasData);
         return ClipRRect(
             borderRadius: BorderRadius.circular(50.0),
-        child: Container(
-        width: 46,
-        height: 46,
-        child: snapshot.hasData
-            ? Image.memory(snapshot.data!, gaplessPlayback: true)
-            : const Icon(Icons.account_circle, size: 46),
-        ));},
+            child: Container(
+              width: 46,
+              height: 46,
+              child: snapshot.hasData
+                  ? Image.memory(snapshot.data!, gaplessPlayback: true)
+                  : const Icon(Icons.account_circle, size: 46),
+            ));
+      },
     );
   }
 }

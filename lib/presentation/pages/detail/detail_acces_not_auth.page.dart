@@ -13,6 +13,7 @@ class DetailAccessNotPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController _dataInputDate = TextEditingController();
     final TextEditingController _dataCodePhone = TextEditingController();
+    final TextEditingController _dataPhone = TextEditingController();
 
     return GeneralLayout(
         child: SingleChildScrollView(
@@ -100,6 +101,7 @@ class DetailAccessNotPage extends StatelessWidget {
                       Expanded(
                           flex: 2,
                           child: TextFormField(
+                            controller: _dataPhone,
                             enableSuggestions: false,
                             maxLength: 22,
                             cursorColor: Colors.grey,
