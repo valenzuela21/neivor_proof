@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+final Uri _url = Uri.parse('https://www.neivor.com');
 
 class AccessPage extends StatelessWidget {
   const AccessPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return GeneralLayout(
         child: Column(children: [
       Expanded(
@@ -95,10 +99,13 @@ class AccessPage extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyLarge,
                             textAlign: TextAlign.center,
                           ),
-                          Text(
-                            "www.neivor.com",
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            textAlign: TextAlign.center,
+                          TextButton(
+                            onPressed: _launchUrl,
+                            child: Text(
+                              "www.neivor.com",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         ],
                       ),
@@ -128,5 +135,11 @@ class AccessPage extends StatelessWidget {
       ),
          const  SizedBox(height: 20)
     ]));
+  }
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }

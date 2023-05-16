@@ -6,15 +6,31 @@ import '../../components/form/calendar.component.dart';
 import '../../components/form/switch.component.dart';
 import '../../ui/form/input.decoration.ui.dart';
 
-class DetailAccessNotPage extends StatelessWidget {
+
+
+class DetailAccessNotPage extends StatefulWidget {
   const DetailAccessNotPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController _dataInputDate = TextEditingController();
-    final TextEditingController _dataCodePhone = TextEditingController();
-    final TextEditingController _dataPhone = TextEditingController();
+  State<DetailAccessNotPage> createState() => _DetailAccessNotPageState();
+}
 
+class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
+
+  final TextEditingController _dataInputDate = TextEditingController();
+  final TextEditingController _dataCodePhone = TextEditingController();
+  final TextEditingController _dataPhone = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _dataInputDate.dispose();
+    _dataCodePhone.dispose();
+    _dataPhone.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return GeneralLayout(
         child: SingleChildScrollView(
       child: SizedBox(
@@ -72,7 +88,7 @@ class DetailAccessNotPage extends StatelessWidget {
                           keyboardType: TextInputType.none,
                           decoration: InputDecorations.generalInputDecoration(
                               hinText: 'Code',
-                              labelText: '',
+                              labelText: 'Ej: +57',
                               colorInput: Colors.grey,
                               borderRadius: BorderRadius.circular(5),
                               suffixIcon: Icons.arrow_drop_down),
