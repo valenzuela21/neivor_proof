@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:typed_data' as td;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -117,12 +120,14 @@ class _ListaAccessContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       height: size.height / 2.5,
       child: ListView.builder(
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
             Contact contact = snapshot.data[index];
+            final _imageFuture = FastContacts.getContactImage(contact.id);
             String phone = "";
             for (var element in contact.phones) {
               phone += '${element.number}  ';
@@ -132,10 +137,7 @@ class _ListaAccessContact extends StatelessWidget {
                 Navigator.pushNamed(context, '/detail');
               },
               child: ListTile(
-                leading: const Icon(
-                  Icons.account_circle,
-                  size: 40,
-                ),
+                leading: ImageContact(imageFuture: _imageFuture),
                 title: Text(contact.displayName,
                     style: Theme.of(context).textTheme.titleSmall),
                 subtitle: Text(phone),
@@ -146,6 +148,30 @@ class _ListaAccessContact extends StatelessWidget {
               ),
             );
           }),
+    );
+  }
+}
+
+
+class ImageContact extends StatelessWidget {
+  final imageFuture;
+  const ImageContact({Key? key, required this.imageFuture}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<td.Uint8List?>(
+      future: imageFuture,
+      builder: (context, snapshot) {
+        print(snapshot.hasData);
+        return ClipRRect(
+            borderRadius: BorderRadius.circular(50.0),
+        child: Container(
+        width: 46,
+        height: 46,
+        child: snapshot.hasData
+            ? Image.memory(snapshot.data!, gaplessPlayback: true)
+            : const Icon(Icons.account_circle, size: 46),
+        ));},
     );
   }
 }
