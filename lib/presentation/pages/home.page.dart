@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 
-import '../../data/models/services.modesl.dart';
+import '../../models/services.model.dart';
 import '../components/modaL_hared_notification.component.dart';
-
-
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
