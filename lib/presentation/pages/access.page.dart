@@ -121,6 +121,7 @@ class AccessPage extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 textAlign: TextAlign.center,
                               ),
+                              const SizedBox(height: 6),
                               QrImage(
                                 data: qrData,
                                 version: QrVersions.auto,
@@ -132,13 +133,14 @@ class AccessPage extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 textAlign: TextAlign.center,
                               ),
+                              const SizedBox(height: 6),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Icon(Icons.access_time_sharp, color: Colors.black45,),
-                                  const SizedBox(width: 5),
+                                  const SizedBox(width: 6),
                                   Text(
-                                    "Expira: $dateExpired",
+                                    "Expira: ${DateFormat.yMMMMEEEEd().format(dateExpired)}",
                                     style: Theme.of(context).textTheme.bodyLarge,
                                     textAlign: TextAlign.center,
                                   ),
