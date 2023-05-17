@@ -14,10 +14,8 @@ class PreviewPage extends StatelessWidget {
     final List<UContact> listLast = context.watch<ContactBloc>().state.listContact;
     if(listLast.isEmpty) {
       return Container(
-        width: 35,
-        height: 35,
         color: Colors.white,
-        child: Image.asset('assets/images/neivor.png'));
+        child: Image.asset('assets/images/neivor.png', width: 125));
     }
     final UContact lastContact = listLast.last;
     return GeneralLayout(
