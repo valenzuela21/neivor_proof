@@ -14,14 +14,19 @@ class ContactBloc extends Bloc<ContactEvent, ContactState> {
 
   ContactBloc({required this.contactRepository}) : super(ContactState.initial()) {
     on<AddContactEvent>(_addContact);
+    on<GetContactLastEvent>(_getContactLast);
   }
 
   Future<void> _addContact(AddContactEvent event, Emitter<ContactState> emit ) async {
-
     final newContact = UContact(name: event.name, dateInvitation: event.dateInvitation, phone: event.phone, comment: event.comment);
     await contactRepository.addContact(newContact);
     final contacts = [...state.listContact, newContact];
-    emit(state.copyWith(listContact: contacts));
+    emit(state.copyWith(listContact: contacts, status: event.status));
+  }
+
+   _getContactLast(GetContactLastEvent event, Emitter<ContactState> emit ) {
+     final contactLast = state.listContact.last;
+     emit(state.copyWith(listContact: state.listContact, contactLast: contactLast, status: event.status));
   }
 }
 

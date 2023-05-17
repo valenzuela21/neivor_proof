@@ -237,7 +237,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           var codeNumber = _dataCodePhone.text.split(' ');
-                          context.read<ContactBloc>().add(AddContactEvent(name: _dataName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  codeNumber[1] +_dataPhone.text.toString(), comment: _dataComment.text));
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  codeNumber[1] +_dataPhone.text.toString(), comment: _dataComment.text, status: Status.LOADING));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },
