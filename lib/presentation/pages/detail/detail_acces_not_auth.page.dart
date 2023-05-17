@@ -228,7 +228,8 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                       color: Theme.of(context).colorScheme.primary,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<ContactBloc>().add(AddContactEvent(name: _dataName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  _dataCodePhone.text +_dataPhone.text.toString(), comment: _dataComment.text));
+                          var codeNumber = _dataCodePhone.text.split(' ');
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  codeNumber[1] +_dataPhone.text.toString(), comment: _dataComment.text));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },
