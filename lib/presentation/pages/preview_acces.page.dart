@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:neivor/blocs/contact/contact_bloc.dart";
+import "package:neivor/models/ucontact.model.dart";
 import "package:neivor/presentation/shared/layout/general.layout.dart";
 
 class PreviewPage extends StatelessWidget {
@@ -7,6 +10,8 @@ class PreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<UContact> listLast = context.watch<ContactBloc>().state.listContact;
+    final UContact lastContact = listLast.last;
     return GeneralLayout(
         child: Padding(
       padding: const EdgeInsets.all(10),
@@ -146,11 +151,11 @@ class PreviewPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                         width: 120,
                                         child: Text('Residente que autoriza:')),
                                     Expanded(
-                                        child: Text('Martin Gutierrez',
+                                        child: Text(lastContact.name,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -160,10 +165,10 @@ class PreviewPage extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                         width: 120, child: Text('Fecha Creación:')),
                                     Expanded(
-                                        child: Text('23/03/2023',
+                                        child: Text(DateTime.now().toString(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -176,7 +181,7 @@ class PreviewPage extends StatelessWidget {
                                     SizedBox(
                                         width: 120, child: Text('Día Entrada:')),
                                     Expanded(
-                                        child: Text('23/03/2023',
+                                        child: Text(lastContact.dateInvitation.toString(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -184,10 +189,11 @@ class PreviewPage extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                Text("Instrucciones Personales"),
+                                const Text("Instrucciones Personales: "),
                                 const SizedBox(height: 8),
-                                Text(
-                                    "La Persona tiene la dificultad para caminar por favor asistirla la ingreso."),
+                                Text(lastContact.comment, style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge),
                               ],
                             ),
                           ),

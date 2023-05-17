@@ -44,6 +44,7 @@ class AccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    const String qrData = " Nombre: Alicia Gonzales \n Telefóno: 321347589 \n Día Entrada: 2022-08-10 \n Expira: 2022-09-22 \n Comentario: Nuevo Comentario";
     return GeneralLayout(
         child: Column(children: [
       Expanded(
@@ -119,7 +120,7 @@ class AccessPage extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                               QrImage(
-                                data: "1234567890",
+                                data: qrData,
                                 version: QrVersions.auto,
                                 size: 180.0,
                               ),
