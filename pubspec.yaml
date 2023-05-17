@@ -38,9 +38,11 @@ dependencies:
   country_picker: ^2.0.20
   cupertino_icons: ^1.0.2
   calendar_date_picker2: ^0.5.2
+  equatable: ^2.0.5
   fast_contacts: ^3.0.3
   flutter_bloc: ^8.1.2
   google_fonts: ^4.0.4
+  http: ^0.13.6
   url_launcher: ^6.1.11
   qr_flutter: ^4.0.0
   permission_handler: ^10.2.0
