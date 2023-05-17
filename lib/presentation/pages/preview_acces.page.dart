@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:intl/intl.dart";
 import "package:neivor/blocs/contact/contact_bloc.dart";
 import "package:neivor/models/ucontact.model.dart";
 import "package:neivor/presentation/shared/layout/general.layout.dart";
@@ -168,7 +169,7 @@ class PreviewPage extends StatelessWidget {
                                     const SizedBox(
                                         width: 120, child: Text('Fecha Creación:')),
                                     Expanded(
-                                        child: Text(DateTime.now().toString(),
+                                        child: Text(DateFormat("yyyy-MM-dd").format(DateTime.now()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -178,10 +179,10 @@ class PreviewPage extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                         width: 120, child: Text('Día Entrada:')),
                                     Expanded(
-                                        child: Text(lastContact.dateInvitation.toString(),
+                                        child: Text(DateFormat("yyyy-MM-dd").format(lastContact.dateInvitation),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
