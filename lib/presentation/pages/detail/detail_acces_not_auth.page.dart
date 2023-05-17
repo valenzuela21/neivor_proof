@@ -1,8 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 import 'package:country_picker/country_picker.dart';
+import '../../../blocs/contact/contact_bloc.dart';
 import '../../components/form/calendar.component.dart';
 import '../../components/form/switch.component.dart';
 import '../../ui/form/input.decoration.ui.dart';
@@ -225,6 +227,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                       color: Theme.of(context).colorScheme.primary,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataInputDate.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  _dataCodePhone.text +_dataPhone.text, comment: _dataComment.text));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },
