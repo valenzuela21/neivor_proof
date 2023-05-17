@@ -199,6 +199,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                               textStyle: Theme.of(context).textTheme.bodyLarge)),
                       const SizedBox(height: 8),
                       TextFormField(
+                        controller: _dataComment,
                         enableSuggestions: false,
                         cursorColor: Colors.grey,
                         autocorrect: false,
@@ -227,7 +228,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                       color: Theme.of(context).colorScheme.primary,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<ContactBloc>().add(AddContactEvent(name: _dataInputDate.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  _dataCodePhone.text +_dataPhone.text, comment: _dataComment.text));
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone:  _dataCodePhone.text +_dataPhone.text.toString(), comment: _dataComment.text));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },

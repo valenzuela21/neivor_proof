@@ -12,6 +12,7 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<UContact> listLast = context.watch<ContactBloc>().state.listContact;
+    print(listLast.last);
     final UContact lastContact = listLast.last;
     return GeneralLayout(
         child: Padding(
@@ -213,7 +214,7 @@ class PreviewPage extends StatelessWidget {
                   highlightColor: Theme.of(context).colorScheme.tertiary,
                   elevation: 0,
                   color: Theme.of(context).colorScheme.primary,
-                  onPressed: () => Navigator.of(context).pushNamed("/access"),
+                  onPressed: () => Navigator.of(context).pushNamed("/access", arguments: lastContact),
                   child: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 15),

@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:neivor/models/ucontact.model.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,14 +12,11 @@ final Uri _url = Uri.parse('https://www.neivor.com');
 class AccessPage extends StatelessWidget {
   const AccessPage({Key? key}) : super(key: key);
 
-
-
   Future<void> _launchUrl() async {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
     }
   }
-
 
   Future<void> _openWhatsapp({required BuildContext context}) async {
     String whatsapp = '+573213487458';
@@ -43,7 +41,8 @@ class AccessPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-
+    final UContact contact = ModalRoute.of(context)?.settings.arguments as UContact;
+    print(contact);
     const String qrData = " Nombre: Alicia Gonzales \n Telefóno: 321347589 \n Día Entrada: 2022-08-10 \n Expira: 2022-09-22 \n Comentario: Nuevo Comentario";
     return GeneralLayout(
         child: Column(children: [
