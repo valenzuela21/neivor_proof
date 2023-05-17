@@ -156,7 +156,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
                       color: Theme.of(context).colorScheme.primary,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<ContactBloc>().add(AddContactEvent(name: _dataInputName.text, dateInvitation: DateTime.now(), phone: contact.phones[0].toString(), comment: _dataComment.text));
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataInputName.text, dateInvitation: DateTime.parse(_dataInputDate.text), phone: contact.phones[0].toString(), comment: _dataComment.text));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },
