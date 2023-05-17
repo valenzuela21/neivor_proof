@@ -1,17 +1,21 @@
 import 'dart:convert';
+import 'package:uuid/uuid.dart';
 
+Uuid uuid = const Uuid();
 class UContact {
+  final String id;
   final String name;
   final DateTime dateInvitation;
   final String phone;
   final String comment;
 
   UContact({
+    String? id,
     required this.name,
     required this.dateInvitation,
     required this.phone,
     required this.comment,
-  });
+  }): id = id ?? uuid.v4();
 
   UContact copyWith({
     String? name,
@@ -38,9 +42,15 @@ class UContact {
   );
 
   Map<String, dynamic> toJson() => {
+    "id": id,
     "name": name,
     "date_invitation": "${dateInvitation.year.toString().padLeft(4, '0')}-${dateInvitation.month.toString().padLeft(2, '0')}-${dateInvitation.day.toString().padLeft(2, '0')}",
     "phone": phone,
     "comment": comment,
   };
+
+  @override
+  String toString() {
+    return 'UContact{id: $id, name: $name, dateInvitation: $dateInvitation, phone: $phone, comment: $comment}';
+  }
 }

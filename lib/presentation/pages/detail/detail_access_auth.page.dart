@@ -1,7 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:fast_contacts/fast_contacts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neivor/blocs/contact/contact_bloc.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 
 import '../../components/form/calendar.component.dart';
@@ -33,6 +35,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
   Widget build(BuildContext context) {
     final contact = ModalRoute.of(context)?.settings.arguments as Contact;
     _dataInputName.text = contact.displayName;
+
     return GeneralLayout(
         child: SingleChildScrollView(
       child: SizedBox(
@@ -40,7 +43,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: FadeIn(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             child: Form(
               key: _formKey,
               child: Column(
@@ -88,7 +91,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
                                       textStyle: Theme.of(context)
                                           .textTheme
                                           .bodyLarge))),
-                          SwitchApp()
+                          const SwitchApp()
                         ],
                       ),
                       TextFormField(
@@ -153,6 +156,7 @@ class _DetailAccessPageState extends State<DetailAccessPage> {
                       color: Theme.of(context).colorScheme.primary,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          context.read<ContactBloc>().add(AddContactEvent(name: _dataInputName.text, dateInvitation: DateTime.now(), phone: contact.phones[0].toString(), comment: _dataComment.text));
                           Navigator.of(context).pushNamed("/preview");
                         }
                       },

@@ -19,17 +19,25 @@ class ContactServices implements ServerResource {
 
   @override
   Future<UContact> addContactUser(UContact data) async  {
-    final Uri uri = Uri(
-      scheme: 'https',
-      host: NetworkApp.apiHost,
-      path: '/server_json'
-    );
-      try{
-          final http.Response response = await httpClient.post(uri, body: data);
-          if(response.statusCode != 200){
+
+    final uri = Uri.parse(NetworkApp.apiHost);
+
+    try{
+          final http.Response response = await httpClient.post(uri,
+              headers: <String, String>{
+                'Content-Type': 'application/json; charset=UTF-8',
+              },
+              body: jsonEncode(<String, String>{
+            'name': data.name,
+            "date_invitation": data.dateInvitation.toString(),
+            "phone": data.phone,
+            "comment": data.comment
+          }));
+
+          if(response.statusCode != 201){
             throw Exception(httpErrorHandler(response));
           }
-          final contactJson = json.decode(response.body);
+          final contactJson = jsonDecode(response.body);
           final UContact contact =  UContact.fromJson(contactJson);
           return contact;
       }catch(e){
