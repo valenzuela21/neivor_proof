@@ -20,8 +20,8 @@ class AccessPage extends StatelessWidget {
   }
 
   Future<void> _openWhatsapp({required BuildContext context}) async {
-    String whatsapp = '+573213487458';
-    String whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=hello";
+    String whatsapp = '+573013487448';
+    String whatsappURlAndroid = "whatsapp://send?phone=$whatsapp&text=Hello Neivor.";
     String whatsappURLIos =
         "https://wa.me/$whatsapp?text=${Uri.parse("hello")}";
     if (Platform.isIOS) {
