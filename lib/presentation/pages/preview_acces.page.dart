@@ -174,7 +174,7 @@ class PreviewPage extends StatelessWidget {
                                     const SizedBox(
                                         width: 120, child: Text('Fecha Creación:')),
                                     Expanded(
-                                        child: Text(DateFormat("yyyy-MM-dd").format(DateTime.now()),
+                                        child: Text(DateFormat("dd/MM/yyyy").format(DateTime.now()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
@@ -187,7 +187,7 @@ class PreviewPage extends StatelessWidget {
                                     const SizedBox(
                                         width: 120, child: Text('Día Entrada:')),
                                     Expanded(
-                                        child: Text(DateFormat("yyyy-MM-dd").format(lastContact.dateInvitation),
+                                        child: Text(DateFormat("dd/MM/yyyy").format(lastContact.dateInvitation),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyLarge,
