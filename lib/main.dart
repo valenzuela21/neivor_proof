@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           title: 'Neivor',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.theme(context),
-          initialRoute: Routes.Home,
+          initialRoute: Routes.home,
           routes: AppRoute.routes,
         ),
       ),

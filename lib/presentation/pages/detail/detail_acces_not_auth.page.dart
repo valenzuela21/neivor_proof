@@ -43,7 +43,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: FadeIn(
-            duration: Duration(milliseconds: 1000),
+            duration: const Duration(milliseconds: 1000),
             child: Form(
               key: _formKey,
               child: Column(
@@ -163,7 +163,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                                       textStyle: Theme.of(context)
                                           .textTheme
                                           .bodyLarge))),
-                          SwitchApp()
+                          const SwitchApp()
                         ],
                       ),
                       TextFormField(

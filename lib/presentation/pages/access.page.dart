@@ -42,8 +42,7 @@ class AccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UContact contact = ModalRoute.of(context)?.settings.arguments as UContact;
-    print(contact);
-    const String qrData = " Nombre: Alicia Gonzales \n Telefóno: 321347589 \n Día Entrada: 2022-08-10 \n Expira: 2022-09-22 \n Comentario: Nuevo Comentario";
+    final String qrData = " Nombre: ${contact.name} \n Telefóno: ${contact.phone} \n Día Entrada: 2022-08-10 \n Expira: 2022-09-22 \n Comentario: ${contact.comment}";
     return GeneralLayout(
         child: Column(children: [
       Expanded(
@@ -74,7 +73,7 @@ class AccessPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                margin: EdgeInsets.only(bottom: 10),
+                                margin: const EdgeInsets.only(bottom: 10),
                                 height: 30,
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).colorScheme.primary,
@@ -87,8 +86,8 @@ class AccessPage extends StatelessWidget {
                                 width: 100,
                               ),
                               const SizedBox(height: 10),
-                              const Text("Alicia Gonzales",
-                                  style: TextStyle(
+                              Text(contact.name,
+                                  style: const TextStyle(
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w700,
                                       fontSize: 24)),
@@ -132,8 +131,8 @@ class AccessPage extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.access_time_sharp, color: Colors.black45,),
-                                  SizedBox(width: 5),
+                                  const Icon(Icons.access_time_sharp, color: Colors.black45,),
+                                  const SizedBox(width: 5),
                                   Text(
                                     "Expira: 21/04/2023 - 18:30",
                                     style: Theme.of(context).textTheme.bodyLarge,
@@ -151,7 +150,7 @@ class AccessPage extends StatelessWidget {
                                 onPressed: _launchUrl,
                                 child: Text(
                                   "www.neivor.com",
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style:TextStyle(color: Theme.of(context).colorScheme.primary),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -163,7 +162,7 @@ class AccessPage extends StatelessWidget {
         ),
       ),
       FadeInUp(
-        duration: Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 1000),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: MaterialButton(

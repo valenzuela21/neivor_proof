@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 class GeneralLayout extends StatelessWidget {
 
-  Widget child;
+  final Widget child;
 
-  GeneralLayout({Key? key, required this.child}) : super(key: key);
+  const GeneralLayout({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class GeneralLayout extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: Container(
+          child: SizedBox(
             width: 400,
             child: child,
           ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:typed_data' as td;
+import 'dart:typed_data';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:fast_contacts/fast_contacts.dart';
@@ -77,7 +78,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      TabsComponent(),
+                      const TabsComponent(),
                       Text('Autorizo Acceso',
                           style: GoogleFonts.aBeeZee(
                               textStyle:
@@ -119,7 +120,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                       ),
                       const SizedBox(height: 10),
                       FadeInUp(
-                        delay: Duration(milliseconds: 500),
+                        delay: const Duration(milliseconds: 500),
                         child: MaterialButton(
                             minWidth: double.infinity,
                             shape: RoundedRectangleBorder(
@@ -168,7 +169,7 @@ class _ListAccessContact extends StatelessWidget {
                 itemBuilder: (context, index) {
                   String phone = "";
                   Contact contact = snapshot.data[index];
-                  final _imageFuture = FastContacts.getContactImage(contact.id);
+                  final Future<Uint8List?> _imageFuture = FastContacts.getContactImage(contact.id);
                   for (var element in contact.phones) {
                     phone += '${element.number}  ';
                   }
@@ -192,13 +193,13 @@ class _ListAccessContact extends StatelessWidget {
           )
         : SizedBox(
                 height: size.height / 2.5,
-                child:Center(child: Text('No hay números telefónicos')));
+                child: const Center(child: Text('No hay números telefónicos')));
 
   }
 }
 
 class _ImageContact extends StatelessWidget {
-  final imageFuture;
+  final Future<Uint8List?> imageFuture;
 
   const _ImageContact({Key? key, required this.imageFuture}) : super(key: key);
 
@@ -209,7 +210,7 @@ class _ImageContact extends StatelessWidget {
       builder: (context, snapshot) {
         return ClipRRect(
             borderRadius: BorderRadius.circular(50.0),
-            child: Container(
+            child: SizedBox(
               width: 46,
               height: 46,
               child: snapshot.hasData

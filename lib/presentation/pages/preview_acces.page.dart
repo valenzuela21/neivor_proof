@@ -39,7 +39,7 @@ class PreviewPage extends StatelessWidget {
                         children: [
                           Container(
                             width: double.infinity,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(color: Colors.grey.shade200),
                             child: Text('Visita',
                                 style: GoogleFonts.lato(
@@ -54,7 +54,7 @@ class PreviewPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    SizedBox(width: 120, child: Text('Nombre:')),
+                                    const SizedBox(width: 120, child: Text('Nombre:')),
                                     Expanded(
                                         child: Text('Claudia Morales',
                                             style: Theme.of(context)
@@ -66,7 +66,7 @@ class PreviewPage extends StatelessWidget {
                                 const SizedBox(height: 10),
                                 Row(
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                         width: 120, child: Text('Tipo de visita:')),
                                     Expanded(
                                         child: Text('Invitado Personal',
@@ -143,7 +143,7 @@ class PreviewPage extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                  icon: Icon(Icons.edit),
+                                  icon: const Icon(Icons.edit),
                                   color: Colors.grey,
                                 ),
                               ],
