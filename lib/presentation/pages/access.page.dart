@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:neivor/models/ucontact.model.dart';
 import 'package:neivor/presentation/shared/layout/general.layout.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -41,8 +42,11 @@ class AccessPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final date = DateTime.now();
     final UContact contact = ModalRoute.of(context)?.settings.arguments as UContact;
-    final String qrData = " Nombre: ${contact.name} \n Telefóno: ${contact.phone} \n Día Entrada: 2022-08-10 \n Expira: 2022-09-22 \n Comentario: ${contact.comment}";
+    final outEnter = DateTime.parse(contact.dateInvitation.toString());
+    final dateExpired = DateTime(date.year, date.month + 2, date.day);
+    final String qrData = " Nombre: ${contact.name} \n Telefóno: ${contact.phone} \n Día Entrada: ${DateFormat.yMMMMEEEEd().format(outEnter)}  \n Expira: ${DateFormat.yMMMMEEEEd().format(dateExpired)} \n Comentario: ${contact.comment}";
     return GeneralLayout(
         child: Column(children: [
       Expanded(
@@ -124,7 +128,7 @@ class AccessPage extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               Text(
-                                "Entrada: Jueves 07 de Junio 2022 ",
+                                "Entrada: ${DateFormat.E().format(outEnter)} ${outEnter.day} de ${DateFormat.yMMMM().format(outEnter)}",
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 textAlign: TextAlign.center,
                               ),
@@ -134,7 +138,7 @@ class AccessPage extends StatelessWidget {
                                   const Icon(Icons.access_time_sharp, color: Colors.black45,),
                                   const SizedBox(width: 5),
                                   Text(
-                                    "Expira: 21/04/2023 - 18:30",
+                                    "Expira: $dateExpired",
                                     style: Theme.of(context).textTheme.bodyLarge,
                                     textAlign: TextAlign.center,
                                   ),
