@@ -7,7 +7,8 @@ class SwitchApp extends StatefulWidget {
 }
 
 class _SwitchAppState extends State<SwitchApp> {
-  bool light = true;
+  bool light = false;
+  dynamic colorSelect()  => light ? Theme.of(context).colorScheme.primary :  Theme.of(context).colorScheme.secondary;
   @override
   Widget build(BuildContext context) {
 
@@ -47,7 +48,7 @@ class _SwitchAppState extends State<SwitchApp> {
       value: light,
       overlayColor: overlayColor,
       trackColor: trackColor,
-      thumbColor:  MaterialStatePropertyAll<Color>(Theme.of(context).colorScheme.primary),
+      thumbColor:  MaterialStatePropertyAll<Color>(colorSelect()),
       onChanged: (bool value) {
         setState(() {
           light = value;
