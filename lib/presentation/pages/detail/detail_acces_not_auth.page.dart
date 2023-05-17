@@ -17,6 +17,10 @@ class DetailAccessNotPage extends StatefulWidget {
 }
 
 class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
+
+  RegExp regexPhone = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _dataName = TextEditingController();
   final TextEditingController _dataInputDate = TextEditingController();
@@ -36,6 +40,7 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return GeneralLayout(
         child: SingleChildScrollView(
       child: SizedBox(
@@ -148,6 +153,9 @@ class _DetailAccessNotPageState extends State<DetailAccessNotPage> {
                                 validator: (String? value) {
                                   if (value == null || value.length < 4) {
                                     return "Ingresa el número telefónico";
+                                  }
+                                  if(!regexPhone.hasMatch(value)){
+                                    return "Ingresa el número telefonico correctamente";
                                   }
                                   return null;
                                 },
