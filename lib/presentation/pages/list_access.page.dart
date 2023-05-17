@@ -162,35 +162,38 @@ class _ListAccessContact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return snapshot.data.length > 0
-        ? SizedBox(
-            height: size.height / 2.5,
-            child: ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  String phone = "";
-                  Contact contact = snapshot.data[index];
-                  final Future<Uint8List?> _imageFuture = FastContacts.getContactImage(contact.id);
-                  for (var element in contact.phones) {
-                    phone += '${element.number}  ';
-                  }
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/detail',
-                          arguments: snapshot.data[index]);
-                    },
-                    child: ListTile(
-                      leading: _ImageContact(imageFuture: _imageFuture),
-                      title: Text(contact.displayName,
-                          style: Theme.of(context).textTheme.titleSmall),
-                      subtitle: Text(phone),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 14,
+        ? WillPopScope(
+          onWillPop: () async => false,
+          child: SizedBox(
+              height: size.height / 2.5,
+              child: ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    String phone = "";
+                    Contact contact = snapshot.data[index];
+                    final Future<Uint8List?> _imageFuture = FastContacts.getContactImage(contact.id);
+                    for (var element in contact.phones) {
+                      phone += '${element.number}  ';
+                    }
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/detail',
+                            arguments: snapshot.data[index]);
+                      },
+                      child: ListTile(
+                        leading: _ImageContact(imageFuture: _imageFuture),
+                        title: Text(contact.displayName,
+                            style: Theme.of(context).textTheme.titleSmall),
+                        subtitle: Text(phone),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 14,
+                        ),
                       ),
-                    ),
-                  );
-                }),
-          )
+                    );
+                  }),
+            ),
+        )
         : SizedBox(
                 height: size.height / 2.5,
                 child: const Center(child: Text('No hay números telefónicos')));
