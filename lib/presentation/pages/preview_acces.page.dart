@@ -12,7 +12,13 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<UContact> listLast = context.watch<ContactBloc>().state.listContact;
-    print(listLast.last);
+    if(listLast.isEmpty) {
+      return Container(
+        width: 35,
+        height: 35,
+        color: Colors.white,
+        child: Image.asset('assets/images/neivor.png'));
+    }
     final UContact lastContact = listLast.last;
     return GeneralLayout(
         child: Padding(
