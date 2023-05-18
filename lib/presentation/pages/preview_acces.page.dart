@@ -11,7 +11,6 @@ class PreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<ContactBloc>().add(const GetContactLastEvent(status: Status.LOADING));
     return GeneralLayout(
         child: WillPopScope(
           onWillPop: () async => false,
