@@ -12,15 +12,15 @@ class FavoritesPage extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
-        SizedBox(
+      children: [
+        const SizedBox(
+          height: 40,
+        ),
+        TabsComponent(stateTab: 2),
+        const SizedBox(
           height: 5,
         ),
-        TabsComponent(),
-        SizedBox(
-          height: 5,
-        ),
-        Text("Working favoritos..."),
+        const Text("Working favoritos..."),
       ],
     ));
   }

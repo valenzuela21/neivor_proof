@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 class TabsComponent extends StatefulWidget {
-  const TabsComponent({Key? key}) : super(key: key);
+  int stateTab;
+  TabsComponent({Key? key, required this.stateTab}) : super(key: key);
 
   @override
   State<TabsComponent> createState() => _TabsComponentState();
 }
 
 class _TabsComponentState extends State<TabsComponent> {
-
-  bool stateTab = true;
 
   @override
   Widget build(BuildContext context) {
@@ -30,20 +29,14 @@ class _TabsComponentState extends State<TabsComponent> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      stateTab = true;
-                    });
-                  },
-                  child: Container(
+                Container(
                     width: 160,
                     decoration: BoxDecoration(
-                      color: stateTab ? Colors.white : Colors.transparent,
+                      color: widget.stateTab == 1 ? Colors.white : Colors.transparent,
                       borderRadius: BorderRadius.circular(50),
                       boxShadow: [
                         BoxShadow(
-                          color: stateTab
+                          color: widget.stateTab == 1
                               ? Colors.grey.withOpacity(0.2)
                               : Colors.grey.withOpacity(0.0),
                           spreadRadius: 4,
@@ -62,21 +55,14 @@ class _TabsComponentState extends State<TabsComponent> {
                       ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: (){
-                    setState(() {
-                      stateTab = false;
-                    });
-                  },
-                  child: Container(
+               Container(
                     width: 160,
                     decoration: BoxDecoration(
-                      color: !stateTab ? Colors.white : Colors.transparent,
+                      color: widget.stateTab == 2? Colors.white : Colors.transparent,
                       borderRadius: BorderRadius.circular(50),
                       boxShadow: [
                         BoxShadow(
-                          color: !stateTab
+                          color: widget.stateTab == 2
                               ? Colors.grey.withOpacity(0.2)
                               : Colors.grey.withOpacity(0.0),
                           spreadRadius: 4,
@@ -88,13 +74,12 @@ class _TabsComponentState extends State<TabsComponent> {
 
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, "/favoritos"),
+                      onTap: () => Navigator.pushNamed(context, "/favorites"),
                       child: Text("Favoritos",
                           style: Theme.of(context).textTheme.titleSmall,
                           textAlign: TextAlign.center),
                     ),
                   ),
-                )
               ],
             ),
           ]),

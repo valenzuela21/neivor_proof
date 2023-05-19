@@ -80,7 +80,7 @@ class _ListAccessPageState extends State<ListAccessPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const TabsComponent(),
+                        TabsComponent(stateTab: 1),
                         Text('Autorizo Acceso',
                             style: GoogleFonts.aBeeZee(
                                 textStyle:
