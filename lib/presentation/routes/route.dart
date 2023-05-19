@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neivor/presentation/pages/access.page.dart';
 import 'package:neivor/presentation/pages/detail/detail_acces_not_auth.page.dart';
 import 'package:neivor/presentation/pages/detail/detail_access_auth.page.dart';
+import 'package:neivor/presentation/pages/favorites.dart';
 import 'package:neivor/presentation/pages/home.page.dart';
 import 'package:neivor/presentation/pages/list_access.page.dart';
 import 'package:neivor/presentation/pages/preview_acces.page.dart';
@@ -13,6 +14,7 @@ abstract class Routes {
   static const detail =  "/detail";
   static const preview =  "/preview";
   static const access =  "/access";
+  static const favorites =  "/favorites";
 }
 
 abstract class AppRoute {
@@ -23,6 +25,7 @@ abstract class AppRoute {
     Routes.notListAccess: (context) => const DetailAccessNotPage(),
     Routes.detail: (context) => const DetailAccessPage(),
     Routes.preview: (context) => const PreviewPage(),
-    Routes.access: (context) => const AccessPage()
+    Routes.access: (context) => const AccessPage(),
+    Routes.favorites: (context) => const FavoritesPage()
   };
 }

@@ -39,24 +39,27 @@ class _TabsComponentState extends State<TabsComponent> {
                   child: Container(
                     width: 160,
                     decoration: BoxDecoration(
-                        color: stateTab ? Colors.white : Colors.transparent,
-                        borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                      color: stateTab
-                          ? Colors.grey.withOpacity(0.2)
-                          : Colors.grey.withOpacity(0.0),
-                      spreadRadius: 4,
-                      blurRadius: 6,
-                      offset: const Offset(0, 2),
+                      color: stateTab ? Colors.white : Colors.transparent,
+                      borderRadius: BorderRadius.circular(50),
+                      boxShadow: [
+                        BoxShadow(
+                          color: stateTab
+                              ? Colors.grey.withOpacity(0.2)
+                              : Colors.grey.withOpacity(0.0),
+                          spreadRadius: 4,
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
                     padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: Text(
-                      "Contactenos",
-                      style: Theme.of(context).textTheme.titleSmall,
-                      textAlign: TextAlign.center,
+                    child: GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, "/list_access"),
+                      child: Text(
+                        "Contactenos",
+                        style: Theme.of(context).textTheme.titleSmall,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
@@ -69,8 +72,8 @@ class _TabsComponentState extends State<TabsComponent> {
                   child: Container(
                     width: 160,
                     decoration: BoxDecoration(
-                        color: !stateTab ? Colors.white : Colors.transparent,
-                        borderRadius: BorderRadius.circular(50),
+                      color: !stateTab ? Colors.white : Colors.transparent,
+                      borderRadius: BorderRadius.circular(50),
                       boxShadow: [
                         BoxShadow(
                           color: !stateTab
@@ -84,9 +87,12 @@ class _TabsComponentState extends State<TabsComponent> {
                     ),
 
                     padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: Text("Favoritos",
-                        style: Theme.of(context).textTheme.titleSmall,
-                        textAlign: TextAlign.center),
+                    child: GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, "/favoritos"),
+                      child: Text("Favoritos",
+                          style: Theme.of(context).textTheme.titleSmall,
+                          textAlign: TextAlign.center),
+                    ),
                   ),
                 )
               ],
